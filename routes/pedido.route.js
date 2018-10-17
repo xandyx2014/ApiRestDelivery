@@ -1,0 +1,10 @@
+const express = require('express');
+const PedidoController = require('../controllers/pedido.controller');
+const app = express.Router();
+const auth = require('../middleware/auth.middleware');
+app.get('/test', PedidoController.test);
+app.post('/',[auth.ensureAuth],PedidoController.pedidoCrear);
+app.put('/:id',[auth.ensureAuth],PedidoController.pedidoEditar);
+app.get('/',[auth.ensureAuth],PedidoController.pedidoMostrar);
+app.get('/:id', [auth.ensureAuth],PedidoController.pedidoMostrarId);
+module.exports = app;

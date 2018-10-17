@@ -1,0 +1,10 @@
+const express = require('express');
+const DetallePedidoController = require('../controllers/detalle-pedido.controller');
+const app = express.Router();
+const auth = require('../middleware/auth.middleware');
+app.get('/test', DetallePedidoController.test);
+app.post('/',[auth.ensureAuth],DetallePedidoController.detallePedidoCrear);
+app.put('/:id',[auth.ensureAuth],DetallePedidoController.detallePedidoEditar);
+app.get('/',[auth.ensureAuth],DetallePedidoController.detallePedidoMostrar);
+app.get('/:id',[auth.ensureAuth],DetallePedidoController.detallePedidoMostrarId);
+module.exports = app;
